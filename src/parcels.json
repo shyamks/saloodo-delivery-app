@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Package #1",
+        "status": "WAITING",
+        "deliveryTime": null,
+        "pickupTime": null,
+        "assignedBiker": null
+    },
+    {
+        "id": 2,
+        "name": "Package #2",
+        "status": "WAITING",
+        "deliveryTime": null,
+        "pickupTime": null,
+        "assignedBiker": null
+    }
+]
