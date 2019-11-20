@@ -3,29 +3,8 @@ import Select from 'react-select'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { Button } from './constants'
+import { Button, ASSIGNED, PICKED_UP, WAITING, DELIVERED, Assignee, Box, BIKER_OPTIONS } from './constants'
 import { assignBikerToParcel, reassignParcel } from './actions';
-
-const options = [
-    { value: 'Biker1', label: 'Biker1' },
-    { value: 'Biker2', label: 'Biker2' },
-    { value: 'Biker3', label: 'Biker3' },
-];
-
-const Box = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin: 10px auto 10px auto;
-    
-    width: 500px;
-    border-radius: 40px;
-    height: 100px;
-    
-    border: 1px solid blue;
-
-    justify-content: center;
-    align-items: center;
-`
 
 const BoxTitle = styled.p`
     margin-right: 16px;
@@ -33,17 +12,16 @@ const BoxTitle = styled.p`
 
 const Dropdown = styled.div`
     width: 200px;
+    @media screen and (max-width: 800px) {
+        width: 100px;
+    }
 `
-const Assignee = styled.p`
-    width: 200px;
-    text-align: center;
-`
-
 
 export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal }) {
 
-    let { assignedBiker } = parcelData
-    const [selectedOption, setSelectedOption] = useState(assignedBiker ? { value: assignedBiker, label: assignedBiker }: null)
+    let { assignedBiker, status, pickupTime, deliveryTime } = parcelData
+    const [selectedOption, setSelectedOption] = useState(assignedBiker ? { value: assignedBiker, label: assignedBiker } : null)
+
     const handleAssign = (data) => {
         setSelectedOption(data)
     }
@@ -54,24 +32,44 @@ export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal
     return (
         <Box id={id}>
             <BoxTitle>{parcelData.name}</BoxTitle>
-            {assignedBiker ?
+            {status === WAITING &&
                 (
-                    <>
-                        <Assignee>{`Assigned to ${assignedBiker}`}</Assignee>
-                        <Button onClick={() => reassign(id)}> Reassign </Button>
-                    </>
-                ) : (
                     <>
                         <Dropdown>
                             <Select
                                 value={selectedOption}
                                 onChange={handleAssign}
-                                options={options}
+                                options={BIKER_OPTIONS}
                             />
                         </Dropdown>
-                        <Button onClick={() => assign(id, selectedOption.value)}> Assign </Button>
+                        <Button disabled={!selectedOption} onClick={() => assign(id, selectedOption.value)}> Assign </Button>
                     </>
-                )}
+                )
+            }
+            {status === ASSIGNED &&
+                (
+                    <>
+                        <Assignee>{`Assigned to ${assignedBiker}`}</Assignee>
+                        <Button disabled={!selectedOption} onClick={() => reassign(id)}> Reassign </Button>
+                    </>
+                )
+            }
+            {status === PICKED_UP &&
+                (
+                    <>
+                        <Assignee>{`${assignedBiker} has picked up the parcel on ${pickupTime.toLocaleString()}`}</Assignee>
+                    </>
+                )
+            }
+            {status === DELIVERED &&
+                 (
+                    <>
+                        <Assignee>{`${assignedBiker} has picked up the parcel on ${pickupTime.toLocaleString()} and delivered on ${deliveryTime.toLocaleString()}`}</Assignee>
+                    </>
+                )
+            }
+
+
         </Box>
     )
 }

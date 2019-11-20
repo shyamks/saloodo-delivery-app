@@ -26,15 +26,9 @@ const AppHeader = styled.div`
 
 const AppLeftHeader = styled.div`
     display: flex;
-    @media screen and (max-width: 800px) {
-        display: none;
-    }
 `
 const AppRightHeader = styled.div`
     display: flex;
-    @media screen and (max-width: 800px) {
-        display: none;
-    }
 `
 
 const LoginHeader = styled.div`
@@ -45,19 +39,13 @@ const LoginHeader = styled.div`
     }
 `
 
-export function Header({ currentView, onManagerView, onBikerView, onLogout }) {
+export function Header({ currentView, onLogout }) {
     return (
         <Wrapper>
             <AppHeader>
                 <AppLeftHeader> Saloodo App </AppLeftHeader>
                 <AppRightHeader>
                     {currentView && <LoginHeader onClick={() => onLogout()}> Logout </LoginHeader>}
-                    {!currentView &&
-                        <>
-                            <LoginHeader onClick={() => onManagerView()}>Login as Manager</LoginHeader>
-                            <LoginHeader onClick={() => onBikerView()}>Login as Biker</LoginHeader>
-                        </>
-                    }
                 </AppRightHeader>
             </AppHeader>
         </Wrapper>

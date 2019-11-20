@@ -1,63 +1,97 @@
 import React, { useState, useEffect } from 'react'
+import "react-datepicker/dist/react-datepicker.css";
+
+import DatePicker from 'react-datepicker'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { Button, ASSIGNED, PICKED_UP, DELIVERED, getCurrentDateTime } from './constants'
+import { Button, ASSIGNED, PICKED_UP, DELIVERED, Box } from './constants'
 import { deliverBikerParcel, pickupBikerParcel } from './actions';
-
-const Box = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin: 10px auto 10px auto;
-    
-    width: 500px;
-    border-radius: 40px;
-    height: 100px;
-    
-    border: 1px solid blue;
-
-    justify-content: center;
-    align-items: center;
-`
 
 const BoxTitle = styled.p`
     margin-right: 16px;
 `
 
-const Dropdown = styled.div`
-    width: 200px;
+const PickedUp = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 const Assignee = styled.p`
     width: 200px;
     text-align: center;
+    @media all and (max-width: 800px) {
+        width: 100px;
+    }
 `
 
+const Center = styled.div`
+    margin-left: auto;
+    margin-right: auto;
+`
 
 export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, parcelsForReal }) {
 
     let { assignedBiker, status, pickupTime, deliveryTime } = parcelData
-    
+
+    const [selectedOption, setSelectedOption] = useState(assignedBiker ? { value: assignedBiker, label: assignedBiker } : null)
+    const [dateTime, setDateTime] = useState(new Date())
+
+    const onChange = (date, status) => {
+        if (status == PICKED_UP){
+            if(date > pickupTime)
+                setDateTime(date)
+        }
+        else {
+            setDateTime(date)
+        }
+        console.log(date, 'date')
+        
+    }
     console.log(parcelsForReal, 'parcelsForReal')
 
     console.log(parcelData, 'parcelItem')
+    console.log(selectedOption, 'selectedOption')
     return (
         <Box id={id}>
             <BoxTitle>{parcelData.name}</BoxTitle>
             {status === ASSIGNED && (
                 <>
-                    {`When the parcel is picked up`}
-                    <Button onClick={() => pickupParcel(id, getCurrentDateTime())}> Pickup </Button>
+                    <DatePicker
+                        selected={dateTime}
+                        onChange={(date) => onChange(date, PICKED_UP)}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={1}
+                        timeCaption="time"
+                        dateFormat="yyyy/MM/dd h:mm aa"
+                    />
+                    <Button onClick={() => pickupParcel(id, dateTime)}> Pickup </Button>
                 </>
             )}
             {status === PICKED_UP && (
                 <>
-                    {`When the parcel is delivered`}
-                    <Button onClick={() => deliverParcel(id, getCurrentDateTime())}> Delivered </Button>
+                    <PickedUp>
+                        <Assignee>{`Parcel was picked on ${pickupTime.toLocaleString()}`}</Assignee>
+                        <Center>
+                            <DatePicker
+                                selected={dateTime}
+                                onChange={(date) => onChange(date, PICKED_UP)}
+                                showTimeSelect
+                                excludeOutOfBoundsTimes
+                                minDate={pickupTime}
+                                timeFormat="HH:mm"
+                                timeIntervals={1}
+                                timeCaption="time"
+                                dateFormat="yyyy/MM/dd h:mm aa"
+                            />
+                        </Center>
+                    </PickedUp>
+                    <Button onClick={() => deliverParcel(id, dateTime)}> Delivered </Button>
                 </>
             )}
             {status === DELIVERED && (
                 <>
-                    {`Was picked up on ${pickupTime} and delivered on ${deliveryTime}`}
+                    <Assignee>{`Was picked up on ${pickupTime.toLocaleString()} and delivered on ${deliveryTime.toLocaleString()}`}</Assignee>
                 </>
             )}
         </Box>
@@ -65,7 +99,7 @@ export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, parce
 }
 
 const mapStateToProps = (state, ownProps) => ({
-        parcelsForReal: state.parcels
+    parcelsForReal: state.parcels
 })
 
 const mapDispatchToProps = dispatch => ({

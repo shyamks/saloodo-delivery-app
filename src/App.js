@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 
 import './App.css'
 import { Header } from './Header'
+import { Login } from './Login'
 import { Biker, ConnectedBiker } from './Biker'
 import { Manager, ConnectedManager } from './Manager'
 import { Body, MANAGER, BIKER } from './constants'
@@ -14,17 +15,16 @@ const store = createStore(rootReducer)
 
 function App() {
 
-  const [view, setView] = useState({ currentView: MANAGER })
-
+  const [loginInfo, setLoginInfo] = useState({})
+  let { accessToken, userRole, username } = loginInfo
   return (
     <Provider store={store}>
-      <Header currentView={view.currentView}
-        onManagerView={() => setView({ currentView: MANAGER })}
-        onBikerView={() => setView({ currentView: BIKER })}
-        onLogout={() => setView({ currentView: null })} />
+      <Header currentView={userRole}
+        onLogout={() => setLoginInfo({})} />
       <Body>
-        {view.currentView === 'manager' && <ConnectedManager />}
-        {view.currentView === 'biker' && <ConnectedBiker />}
+        {!userRole && <Login onLogin={setLoginInfo} />}
+        {userRole === MANAGER && <ConnectedManager accessToken={accessToken} />}
+        {userRole === BIKER && <ConnectedBiker username={username} accessToken={accessToken} />}
       </Body>
     </Provider>
   )

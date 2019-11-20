@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { Body } from './constants'
+import { Body, StatusMessage } from './constants'
 import { ConnectedManagerParcel } from './ManagerParcel'
 import { setParcelsInStore } from './actions'
 import { ConnectedBikerParcel } from './BikerParcel'
@@ -13,7 +13,7 @@ const Title = styled.div`
     text-align: center;
 `
 
-export function Biker({ myParcels, setParcels }){
+export function Biker({ username, accessToken, myParcels, setParcels }){
 
     const [data, setData] = useState({ result: null, isLoading: null, error: null })
 
@@ -21,7 +21,11 @@ export function Biker({ myParcels, setParcels }){
         console.log(myParcels,'myParcels')
         if (!myParcels.length){
             setData({ ...data, isLoading: true })
-            fetch('http://localhost:4000/parcels')
+            fetch('http://localhost:4000/parcels',{
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
             .then(response => response.json())
             .then(res => {
                 console.log(res, 'data')
@@ -36,22 +40,23 @@ export function Biker({ myParcels, setParcels }){
         
     }, [])
 
+    let allMyParcels = myParcels.map((parcel) => {
+        return <ConnectedBikerParcel id={parcel.id} parcelData={parcel} />
+    })
     return (
         <Body>
             <Title> My parcels </Title>
             {data.isLoading && <h2>{'Loading...'}</h2>}
             {data.error && <h2>{data.error}</h2>}
-            {myParcels && myParcels.map((parcel) => {
-                return <ConnectedBikerParcel id={parcel.id} parcelData={parcel} />
-            })}
+            {!data.isLoading && myParcels.length == 0 && <StatusMessage> No parcels </StatusMessage> }
+            {!data.isLoading && myParcels.length > 0 && allMyParcels }
         </Body>
     )
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state,'state')
     return {
-        myParcels: state.parcels.filter(parcel => parcel.assignedBiker === 'Biker2')
+        myParcels: state.parcels.filter(parcel => parcel.assignedBiker === ownProps.username)
     }
 }
 
