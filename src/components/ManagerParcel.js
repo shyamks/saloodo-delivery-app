@@ -3,8 +3,8 @@ import Select from 'react-select'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { Button, ASSIGNED, PICKED_UP, WAITING, DELIVERED, Assignee, Box, BIKER_OPTIONS } from './constants'
-import { assignBikerToParcel, reassignParcel } from './actions';
+import { Button, ASSIGNED, PICKED_UP, WAITING, DELIVERED, Assignee, Box, BIKER_OPTIONS } from '../constants'
+import { assignBikerToParcel, reassignParcel } from '../actions';
 
 const BoxTitle = styled.p`
     margin-right: 16px;
@@ -20,7 +20,7 @@ const Dropdown = styled.div`
 export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal }) {
 
     let { assignedBiker, status, pickupTime, deliveryTime } = parcelData
-    const [selectedOption, setSelectedOption] = useState(assignedBiker ? { value: assignedBiker, label: assignedBiker } : null)
+    const [selectedOption, setSelectedOption] = useState(null)
 
     const handleAssign = (data) => {
         setSelectedOption(data)
@@ -50,7 +50,7 @@ export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal
                 (
                     <>
                         <Assignee>{`Assigned to ${assignedBiker}`}</Assignee>
-                        <Button disabled={!selectedOption} onClick={() => reassign(id)}> Reassign </Button>
+                        <Button onClick={() => reassign(id)}> Reassign </Button>
                     </>
                 )
             }
@@ -78,11 +78,9 @@ export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal
 
 // }
 const mapStateToProps = (state, ownProps) => {
-    // console.log(state, 'state')
     return {
         parcelsForReal: state.parcel
     }
-    // assigned: ownProps.state.
 }
 
 const mapDispatchToProps = dispatch => ({

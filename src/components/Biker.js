@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { Body, StatusMessage } from './constants'
-import { setParcelsInStore } from './actions'
+import { Body, StatusMessage } from '../constants'
+import { setParcelsInStore } from '../actions'
 import { ConnectedBikerParcel } from './BikerParcel'
 
 const Title = styled.div`
@@ -12,13 +12,13 @@ const Title = styled.div`
     text-align: center;
 `
 
-export function Biker({ username, accessToken, myParcels, setParcels }){
+export function Biker({ allParcels, accessToken, myParcels, setParcels }){
 
     const [data, setData] = useState({ result: null, isLoading: null, error: null })
 
     useEffect(() => {
         console.log(myParcels,'myParcels')
-        if (!myParcels.length){
+        if (!allParcels.length){
             setData({ ...data, isLoading: true })
             fetch('http://localhost:4000/parcels',{
                 headers: {
@@ -55,7 +55,8 @@ export function Biker({ username, accessToken, myParcels, setParcels }){
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        myParcels: state.parcels.filter(parcel => parcel.assignedBiker === ownProps.username)
+        myParcels: state.parcels.filter(parcel => parcel.assignedBiker === ownProps.username),
+        allParcels: state.parcels
     }
 }
 

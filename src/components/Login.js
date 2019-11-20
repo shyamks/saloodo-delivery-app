@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Select from 'react-select'
 
-import { Body, MANAGER, BIKER, BIKER_OPTIONS, Button, ROLE_OPTIONS, StatusMessage } from './constants'
+import { Body, MANAGER, BIKER, BIKER_OPTIONS, Button, ROLE_OPTIONS, StatusMessage } from '../constants'
 import { BikerParcel } from './BikerParcel'
 
 const Dropdown = styled.div`

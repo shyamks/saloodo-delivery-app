@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import Select from 'react-select'
 
 import { ConnectedManagerParcel } from './ManagerParcel'
-import { ASSIGNED, PICKED_UP, WAITING, DELIVERED, StatusMessage } from './constants'
-import { Body } from './constants'
-import { setParcelsInStore } from './actions'
+import { ASSIGNED, PICKED_UP, WAITING, DELIVERED, StatusMessage } from '../constants'
+import { Body } from '../constants'
+import { setParcelsInStore } from '../actions'
 
 const Title = styled.div`
     margin-left: auto;
@@ -63,7 +63,7 @@ export function Manager({ accessToken, parcels, setParcels }) {
             if (parcel.status === filterOption.value)
                 return [...array, <ConnectedManagerParcel id={parcel.id} parcelData={parcel} />]
         }
-        return array
+        return [...array]
     }, [])
     console.log(filteredParcels.length,'length')
     return (
