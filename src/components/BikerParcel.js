@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { Button, ASSIGNED, PICKED_UP, DELIVERED, Box } from '../constants'
-import { deliverBikerParcel, pickupBikerParcel } from '../actions';
+import { deliverBikerParcel, pickupBikerParcel } from '../redux/actions';
 
 const BoxTitle = styled.p`
     margin-right: 16px;

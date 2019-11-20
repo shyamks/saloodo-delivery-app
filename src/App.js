@@ -8,7 +8,7 @@ import { Login } from './components/Login'
 import { ConnectedBiker } from './components/Biker'
 import { ConnectedManager } from './components/Manager'
 import { Body, MANAGER, BIKER } from './constants'
-import rootReducer from './reducers'
+import rootReducer from './redux/reducers'
 
 const store = createStore(rootReducer)
 

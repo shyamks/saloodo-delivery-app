@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import { Body, StatusMessage } from '../constants'
-import { setParcelsInStore } from '../actions'
+import { setParcelsInStore } from '../redux/actions'
 import { ConnectedBikerParcel } from './BikerParcel'
 import { getParcels } from '../services'
 

@@ -6,7 +6,7 @@ import Select from 'react-select'
 import { ConnectedManagerParcel } from './ManagerParcel'
 import { StatusMessage, FILTER_OPTIONS } from '../constants'
 import { Body } from '../constants'
-import { setParcelsInStore } from '../actions'
+import { setParcelsInStore } from '../redux/actions'
 import { getParcels } from '../services'
 
 const Title = styled.div`
@@ -20,14 +20,14 @@ const Dropdown = styled.div`
     width: 200px;
 `
 
-export function Manager({ accessToken, parcels, setParcels }) {
+export function Manager({ accessToken, allParcels, setParcels }) {
 
     const [data, setData] = useState({ result: null, isLoading: null, error: null })
 
     const [filterOption, setFilterOption] = useState({ label: 'ALL', value: 'ALL' })
 
     useEffect(() => {
-        if (!parcels.length){
+        if (!allParcels.length){
             setData({ ...data, isLoading: true })
             getParcels(accessToken)
             .then(res => {
@@ -41,7 +41,7 @@ export function Manager({ accessToken, parcels, setParcels }) {
         
     }, [])
 
-    let filteredParcels = parcels.reduce((array, parcel) => {
+    let filteredParcels = allParcels.reduce((array, parcel) => {
         if (filterOption.value === 'ALL') {
             return [...array, <ConnectedManagerParcel id={parcel.id} parcelData={parcel} />]
         }
@@ -71,7 +71,7 @@ export function Manager({ accessToken, parcels, setParcels }) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-        parcels: state.parcels
+        allParcels: state.parcels
 })
 
 const mapDispatchToProps = dispatch => ({

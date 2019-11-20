@@ -1,4 +1,4 @@
-import { WAITING, ASSIGNED, PICKED_UP, DELIVERED } from "../constants"
+import { WAITING, ASSIGNED, PICKED_UP, DELIVERED } from "../../constants"
 
 export const parcel = (state= [], action) => {
     switch (action.type) {
