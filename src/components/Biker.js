@@ -14,10 +14,9 @@ const Title = styled.div`
 
 export function Biker({ allParcels, accessToken, myParcels, setParcels }){
 
-    const [data, setData] = useState({ result: null, isLoading: null, error: null })
+    const [data, setData] = useState({ isLoading: null, error: null })
 
     useEffect(() => {
-        console.log(myParcels,'myParcels')
         if (!allParcels.length){
             setData({ ...data, isLoading: true })
             fetch('http://localhost:4000/parcels',{
@@ -29,7 +28,7 @@ export function Biker({ allParcels, accessToken, myParcels, setParcels }){
             .then(res => {
                 console.log(res, 'data')
                 setParcels(res)
-                setData({ ...data, result: res, isLoading: false })
+                setData({ ...data, isLoading: false })
             })
             .catch(err => {
                 console.log(err, 'err')

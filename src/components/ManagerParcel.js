@@ -25,10 +25,6 @@ export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal
     const handleAssign = (data) => {
         setSelectedOption(data)
     }
-    console.log(parcelsForReal, 'parcelsForReal')
-
-    console.log(parcelData, 'parcelItem')
-    console.log(selectedOption, 'selectedOption')
     return (
         <Box id={id}>
             <BoxTitle>{parcelData.name}</BoxTitle>
@@ -74,9 +70,6 @@ export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal
     )
 }
 
-// const getParcels = (parcels, status) => {
-
-// }
 const mapStateToProps = (state, ownProps) => {
     return {
         parcelsForReal: state.parcel

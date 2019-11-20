@@ -65,7 +65,6 @@ export function Manager({ accessToken, parcels, setParcels }) {
         }
         return [...array]
     }, [])
-    console.log(filteredParcels.length,'length')
     return (
         <Body>
             <Title> Manager Dashboard </Title>
