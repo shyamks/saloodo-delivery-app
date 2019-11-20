@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import "react-datepicker/dist/react-datepicker.css";
 
 import DatePicker from 'react-datepicker'
@@ -29,11 +29,10 @@ const Center = styled.div`
     margin-right: auto;
 `
 
-export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, parcelsForReal }) {
+export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, allParcels }) {
 
-    let { assignedBiker, status, pickupTime, deliveryTime } = parcelData
+    let { status, pickupTime, deliveryTime } = parcelData
 
-    const [selectedOption, setSelectedOption] = useState(assignedBiker ? { value: assignedBiker, label: assignedBiker } : null)
     const [dateTime, setDateTime] = useState(new Date())
 
     const onChange = (date, status) => {
@@ -44,13 +43,8 @@ export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, parce
         else {
             setDateTime(date)
         }
-        console.log(date, 'date')
         
     }
-    console.log(parcelsForReal, 'parcelsForReal')
-
-    console.log(parcelData, 'parcelItem')
-    console.log(selectedOption, 'selectedOption')
     return (
         <Box id={id}>
             <BoxTitle>{parcelData.name}</BoxTitle>
@@ -99,7 +93,7 @@ export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, parce
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    parcelsForReal: state.parcels
+    allParcels: state.parcels
 })
 
 const mapDispatchToProps = dispatch => ({

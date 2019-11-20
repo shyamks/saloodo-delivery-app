@@ -5,8 +5,8 @@ import { createStore } from 'redux'
 
 import { Header } from './components/Header'
 import { Login } from './components/Login'
-import { Biker, ConnectedBiker } from './components/Biker'
-import { Manager, ConnectedManager } from './components/Manager'
+import { ConnectedBiker } from './components/Biker'
+import { ConnectedManager } from './components/Manager'
 import { Body, MANAGER, BIKER } from './constants'
 import rootReducer from './reducers'
 

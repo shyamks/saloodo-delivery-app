@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Body, StatusMessage } from '../constants'
 import { setParcelsInStore } from '../actions'
 import { ConnectedBikerParcel } from './BikerParcel'
+import { getParcels } from '../services'
 
 const Title = styled.div`
     margin-left: auto;
@@ -19,19 +20,12 @@ export function Biker({ allParcels, accessToken, myParcels, setParcels }){
     useEffect(() => {
         if (!allParcels.length){
             setData({ ...data, isLoading: true })
-            fetch('http://localhost:4000/parcels',{
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            })
-            .then(response => response.json())
+            getParcels(accessToken)
             .then(res => {
-                console.log(res, 'data')
                 setParcels(res)
                 setData({ ...data, isLoading: false })
             })
             .catch(err => {
-                console.log(err, 'err')
                 setData({ ...data, isLoading: false, error: 'Something went wrong!' })
             })
         }

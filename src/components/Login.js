@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Select from 'react-select'
 
 import { Body, MANAGER, BIKER, BIKER_OPTIONS, Button, ROLE_OPTIONS, StatusMessage } from '../constants'
-import { BikerParcel } from './BikerParcel'
+import { loginApi } from '../services'
 
 const Dropdown = styled.div`
     width: 200px;
@@ -42,22 +42,16 @@ export function Login({ onLogin }) {
     const [login, setLogin] = useState({ error: null, isLoading: false })
     const onSubmit = () => {
         setLogin({ isLoading: true })
-        fetch('http://localhost:4000/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify({ userRole: role.value, username: biker && biker.value })
-        }).then(response => response.json())
-            .then(data => {
-                setLogin({ error: null, isLoading: false })
-                onLogin(data)
-            })
-            .catch(err => {
-                setLogin({ error: err, isLoading: false })
-                console.log(err, 'error')
-            })
+        loginApi(role, biker)
+        .then(data => {
+            setLogin({ error: null, isLoading: false })
+            onLogin(data)
+        }).catch(err => {
+            setLogin({ error: err, isLoading: false })
+        })
     }
     const enabled = role && ((role.value === MANAGER) || (role.value === BIKER && biker))
-    const {isLoading, error} = login
+    const { isLoading, error } = login
     return (
         <Body>
             <BoxTitle> Login </BoxTitle>

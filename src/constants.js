@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+
+export const ENDPOINT = 'http://localhost:4000'
 export const MANAGER = 'manager'
 export const BIKER = 'biker'
 
@@ -96,6 +98,15 @@ export const BIKER_OPTIONS = [
     { value: 'Biker9', label: 'Biker9' },
     { value: 'Biker10', label: 'Biker10' },
 ]
+
+export const FILTER_OPTIONS = [
+    { value: 'ALL', label: 'ALL' },
+    { value: WAITING, label: WAITING },
+    { value: ASSIGNED, label: ASSIGNED },
+    { value: PICKED_UP, label: PICKED_UP },
+    { value: DELIVERED, label: DELIVERED }
+];
+
 
 export const ROLE_OPTIONS = [
     { value: MANAGER, label: 'Manager' },
