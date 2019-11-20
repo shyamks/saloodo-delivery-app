@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import Select from 'react-select'
 
-import { ManagerParcel, ConnectedManagerParcel } from './ManagerParcel'
-import { Button, ASSIGNED, PICKED_UP, WAITING, DELIVERED, StatusMessage } from './constants'
+import { ConnectedManagerParcel } from './ManagerParcel'
+import { ASSIGNED, PICKED_UP, WAITING, DELIVERED, StatusMessage } from './constants'
 import { Body } from './constants'
 import { setParcelsInStore } from './actions'
 

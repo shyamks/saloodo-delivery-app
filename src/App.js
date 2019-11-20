@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-import './App.css'
 import { Header } from './Header'
 import { Login } from './Login'
 import { Biker, ConnectedBiker } from './Biker'
