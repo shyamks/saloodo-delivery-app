@@ -17,7 +17,7 @@ const Dropdown = styled.div`
     }
 `
 
-export function ManagerParcel({ assign, reassign, parcelData, id, parcelsForReal }) {
+export function ManagerParcel({ assign, reassign, parcelData, id }) {
 
     let { assignedBiker, status, pickupTime, deliveryTime } = parcelData
     const [selectedOption, setSelectedOption] = useState(null)

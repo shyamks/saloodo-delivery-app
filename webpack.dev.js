@@ -3,8 +3,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackRootPlugin = require('html-webpack-root-plugin');
 
-// This is main configuration object.
-// Here you write different options and tell Webpack what to do
 module.exports = {
     entry: './src/index.js',
     module: {

@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Manager checking parcel in ASSIGNED status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <ForwardRef(styled.p)>
+      Assigned to Biker1
+    </ForwardRef(styled.p)>
+    <ForwardRef(styled.button)
+      onClick={[Function]}
+    >
+       Reassign 
+    </ForwardRef(styled.button)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;
+
+exports[`Manager checking parcel in DELIVERED status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <ForwardRef(styled.p)>
+      Biker1 has picked up the parcel on 1/28/2019, 3:24:00 AM and delivered on 1/29/2019, 9:24:00 AM
+    </ForwardRef(styled.p)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;
+
+exports[`Manager checking parcel in PICKED_UP status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <ForwardRef(styled.p)>
+      Biker1 has picked up the parcel on 1/28/2019, 3:24:00 AM
+    </ForwardRef(styled.p)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;
+
+exports[`Manager checking parcel in WAITING status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <ForwardRef(styled.div)>
+      <StateManager
+        defaultInputValue=""
+        defaultMenuIsOpen={false}
+        defaultValue={null}
+        onChange={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "Biker1",
+              "value": "Biker1",
+            },
+            Object {
+              "label": "Biker2",
+              "value": "Biker2",
+            },
+            Object {
+              "label": "Biker3",
+              "value": "Biker3",
+            },
+            Object {
+              "label": "Biker4",
+              "value": "Biker4",
+            },
+            Object {
+              "label": "Biker5",
+              "value": "Biker5",
+            },
+            Object {
+              "label": "Biker6",
+              "value": "Biker6",
+            },
+            Object {
+              "label": "Biker7",
+              "value": "Biker7",
+            },
+            Object {
+              "label": "Biker8",
+              "value": "Biker8",
+            },
+            Object {
+              "label": "Biker9",
+              "value": "Biker9",
+            },
+            Object {
+              "label": "Biker10",
+              "value": "Biker10",
+            },
+          ]
+        }
+        value={null}
+      />
+    </ForwardRef(styled.div)>
+    <ForwardRef(styled.button)
+      disabled={true}
+      onClick={[Function]}
+    >
+       Assign 
+    </ForwardRef(styled.button)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;

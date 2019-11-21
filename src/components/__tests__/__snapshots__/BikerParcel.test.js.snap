@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Biker checking parcel in ASSIGNED status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <t
+      allowSameDay={false}
+      dateFormat="yyyy/MM/dd h:mm aa"
+      dateFormatCalendar="LLLL yyyy"
+      disabled={false}
+      disabledKeyboardNavigation={false}
+      dropdownMode="scroll"
+      inlineFocusSelectedMonth={false}
+      monthsShown={1}
+      nextMonthButtonLabel="Next Month"
+      nextYearButtonLabel="Next Year"
+      onBlur={[Function]}
+      onCalendarClose={[Function]}
+      onCalendarOpen={[Function]}
+      onChange={[Function]}
+      onClickOutside={[Function]}
+      onFocus={[Function]}
+      onInputClick={[Function]}
+      onInputError={[Function]}
+      onKeyDown={[Function]}
+      onMonthChange={[Function]}
+      onSelect={[Function]}
+      onYearChange={[Function]}
+      preventOpenOnFocus={false}
+      previousMonthButtonLabel="Previous Month"
+      previousYearButtonLabel="Previous Year"
+      readOnly={false}
+      renderDayContents={[Function]}
+      selected={2019-01-27T21:54:00.000Z}
+      shouldCloseOnSelect={true}
+      showMonthYearPicker={false}
+      showPopperArrow={true}
+      showPreviousMonths={false}
+      showQuarterYearPicker={false}
+      showTimeInput={false}
+      showTimeSelect={true}
+      strictParsing={false}
+      timeCaption="time"
+      timeFormat="HH:mm"
+      timeInputLabel="Time"
+      timeIntervals={1}
+      withPortal={false}
+    />
+    <ForwardRef(styled.button)
+      onClick={[Function]}
+    >
+       Pickup 
+    </ForwardRef(styled.button)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;
+
+exports[`Biker checking parcel in DELIVERED status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <ForwardRef(styled.p)>
+      Was picked up on 1/28/2019, 3:24:00 AM and delivered on 1/29/2019, 9:24:00 AM
+    </ForwardRef(styled.p)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;
+
+exports[`Biker checking parcel in PICKED_UP status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+  <React.Fragment>
+    <ForwardRef(styled.div)>
+      <ForwardRef(styled.p)>
+        Parcel was picked on 1/28/2019, 3:24:00 AM
+      </ForwardRef(styled.p)>
+      <ForwardRef(styled.div)>
+        <t
+          allowSameDay={false}
+          dateFormat="yyyy/MM/dd h:mm aa"
+          dateFormatCalendar="LLLL yyyy"
+          disabled={false}
+          disabledKeyboardNavigation={false}
+          dropdownMode="scroll"
+          excludeOutOfBoundsTimes={true}
+          inlineFocusSelectedMonth={false}
+          minDate={2019-01-27T21:54:00.000Z}
+          monthsShown={1}
+          nextMonthButtonLabel="Next Month"
+          nextYearButtonLabel="Next Year"
+          onBlur={[Function]}
+          onCalendarClose={[Function]}
+          onCalendarOpen={[Function]}
+          onChange={[Function]}
+          onClickOutside={[Function]}
+          onFocus={[Function]}
+          onInputClick={[Function]}
+          onInputError={[Function]}
+          onKeyDown={[Function]}
+          onMonthChange={[Function]}
+          onSelect={[Function]}
+          onYearChange={[Function]}
+          preventOpenOnFocus={false}
+          previousMonthButtonLabel="Previous Month"
+          previousYearButtonLabel="Previous Year"
+          readOnly={false}
+          renderDayContents={[Function]}
+          selected={2019-01-27T21:54:00.000Z}
+          shouldCloseOnSelect={true}
+          showMonthYearPicker={false}
+          showPopperArrow={true}
+          showPreviousMonths={false}
+          showQuarterYearPicker={false}
+          showTimeInput={false}
+          showTimeSelect={true}
+          strictParsing={false}
+          timeCaption="time"
+          timeFormat="HH:mm"
+          timeInputLabel="Time"
+          timeIntervals={1}
+          withPortal={false}
+        />
+      </ForwardRef(styled.div)>
+    </ForwardRef(styled.div)>
+    <ForwardRef(styled.button)
+      onClick={[Function]}
+    >
+       Delivered 
+    </ForwardRef(styled.button)>
+  </React.Fragment>
+</ForwardRef(styled.div)>
+`;
+
+exports[`Biker checking parcel in WAITING status 1`] = `
+<ForwardRef(styled.div)
+  id={1}
+>
+  <ForwardRef(styled.p)>
+    Package #1
+  </ForwardRef(styled.p)>
+</ForwardRef(styled.div)>
+`;

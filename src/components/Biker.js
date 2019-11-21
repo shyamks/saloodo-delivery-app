@@ -33,7 +33,7 @@ export function Biker({ allParcels, accessToken, myParcels, setParcels }){
     }, [])
 
     let allMyParcels = myParcels.map((parcel) => {
-        return <ConnectedBikerParcel id={parcel.id} parcelData={parcel} />
+        return <ConnectedBikerParcel id={parcel.id} parcelData={parcel} initialDateTime={new Date()} />
     })
     return (
         <Body>

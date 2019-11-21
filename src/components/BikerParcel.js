@@ -29,11 +29,11 @@ const Center = styled.div`
     margin-right: auto;
 `
 
-export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, allParcels }) {
+export function BikerParcel({ pickupParcel, deliverParcel, parcelData, id, initialDateTime }) {
 
     let { status, pickupTime, deliveryTime } = parcelData
 
-    const [dateTime, setDateTime] = useState(new Date())
+    const [dateTime, setDateTime] = useState(initialDateTime)
 
     const onChange = (date, status) => {
         if (status == PICKED_UP){
