@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const ENDPOINT = 'http://localhost:4000'
 export const MANAGER = 'manager'
 export const BIKER = 'biker'
@@ -18,6 +17,7 @@ export const Body = styled.div`
       margin: 70px 0 0 0;
     }
 `
+
 export const Assignee = styled.p`
     width: 200px;
     text-align: center;
@@ -106,7 +106,6 @@ export const FILTER_OPTIONS = [
     { value: PICKED_UP, label: PICKED_UP },
     { value: DELIVERED, label: DELIVERED }
 ];
-
 
 export const ROLE_OPTIONS = [
     { value: MANAGER, label: 'Manager' },
